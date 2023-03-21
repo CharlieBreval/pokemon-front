@@ -26,7 +26,7 @@ export const getClient = () => {
               paginatedPokemons: {
                 // Don't cache separate results based on
                 // any of this field's arguments.
-                keyArgs: ["offset"],
+                keyArgs: false,
 
                 // Concatenate the incoming list items with
                 // the existing list items.
