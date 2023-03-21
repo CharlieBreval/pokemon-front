@@ -1,0 +1,8 @@
+query paginatedPokemons($offset: Int!, $limit: Int!) {
+  paginatedPokemons(offset: $offset, limit: $limit) {
+    id
+    name
+    cartouche
+    type
+  }
+}

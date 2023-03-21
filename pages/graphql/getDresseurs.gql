@@ -1,0 +1,11 @@
+query Dresseurs {
+  dresseurs {
+    id
+    name
+    pokemons {
+      id
+      name
+      type
+    }
+  }
+}

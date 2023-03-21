@@ -1,0 +1,14 @@
+query allPokemons {
+  pokemons {
+    id
+    cartouche
+    name
+  }
+  dresseurs {
+    id
+    name
+    pokemons {
+      name
+    }
+  }
+}

@@ -1,8 +1,7 @@
 .main {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
   padding: 6rem;
   min-height: 100vh;
 }
@@ -47,6 +46,7 @@
 }
 
 .card {
+  flex: 1;
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
@@ -59,7 +59,7 @@
   transition: transform 200ms;
 }
 
-.card h2 {
+.card button {
   font-weight: 600;
   margin-bottom: 0.7rem;
 }
