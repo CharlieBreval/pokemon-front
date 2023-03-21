@@ -7,6 +7,7 @@ import styles from "@/styles/Home.module.css";
 import GET_POKEMONS from "./graphql/getPokemons.gql";
 import GET_DRESSEURS from "./graphql/getDresseurs.gql";
 import GET_PAGINATED_POKEMONS from "./graphql/getPaginatedPokemons.gql";
+import GET_PAGINATED_POKEMONS_BIS from "./graphql/getPaginatedPokemonsBis.gql";
 import { useQuery } from "@apollo/client";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -32,14 +33,26 @@ export default function Home() {
       },
     }
   );
-  let offset = 0;
+
+  const { data: dataPaginatedPokemons, fetchMore: fetchMorePaginatedPokemons } =
+    useQuery(GET_PAGINATED_POKEMONS, {
+      variables: {
+        offset: 0,
+        limit: 10,
+      },
+      context: {
+        fetchOptions: {
+          next: { revalidate: 0 },
+        },
+      },
+    });
+
   const {
-    data: dataPaginatedPokemons,
-    refetch: refetchPaginatedPokemons,
-    fetchMore: fetchMorePaginatedPokemons,
-  } = useQuery(GET_PAGINATED_POKEMONS, {
+    data: dataPaginatedPokemonsBis,
+    fetchMore: fetchMorePaginatedPokemonsBis,
+  } = useQuery(GET_PAGINATED_POKEMONS_BIS, {
     variables: {
-      offset,
+      offset: 0,
       limit: 10,
     },
     context: {
@@ -92,6 +105,23 @@ export default function Home() {
             Fetch more paginated pokemons
           </button>
           <p>{JSON.stringify(dataPaginatedPokemons)}</p>
+        </div>
+      </main>
+      <main>
+        <div className={styles.card}>
+          <button
+            onClick={() => {
+              fetchMorePaginatedPokemonsBis({
+                variables: {
+                  limit: 10,
+                  offset: 10,
+                },
+              });
+            }}
+          >
+            Fetch more paginated pokemons BIS
+          </button>
+          <p>{JSON.stringify(dataPaginatedPokemonsBis)}</p>
         </div>
       </main>
     </>

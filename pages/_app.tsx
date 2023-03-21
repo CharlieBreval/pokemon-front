@@ -24,10 +24,6 @@ export const getClient = () => {
           Query: {
             fields: {
               paginatedPokemons: {
-                // Don't cache separate results based on
-                // any of this field's arguments.
-                keyArgs: false,
-
                 // Concatenate the incoming list items with
                 // the existing list items.
                 merge(existing = [], incoming) {
@@ -36,16 +32,16 @@ export const getClient = () => {
               },
             },
           },
-          Pokemon: {
-            fields: {
-              name: {
-                read(name) {
-                  // Return the cached name, transformed to upper case
-                  return name.toUpperCase();
-                },
-              },
-            },
-          },
+          // Pokemon: {
+          //   fields: {
+          //     name: {
+          //       read(name) {
+          //         // Return the cached name, transformed to upper case
+          //         return name.toUpperCase();
+          //       },
+          //     },
+          //   },
+          // },
         },
       }),
     });
