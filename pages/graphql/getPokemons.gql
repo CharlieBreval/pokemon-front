@@ -5,9 +5,9 @@ query allPokemons {
     name
   }
   dresseurs {
-    id
     name
     pokemons {
+      id
       name
     }
   }
