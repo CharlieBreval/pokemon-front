@@ -93,6 +93,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 a {
@@ -104,4 +106,25 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+pre {
+  outline: 1px solid #ccc;
+  padding: 5px;
+  margin: 15px;
+}
+.string {
+  color: rgb(88, 70, 143);
+}
+.number {
+  color: darkorange;
+}
+.boolean {
+  color: blue;
+}
+.null {
+  color: magenta;
+}
+.key {
+  color: rgb(95, 38, 9);
 }

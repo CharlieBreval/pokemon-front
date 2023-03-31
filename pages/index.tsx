@@ -1,67 +1,16 @@
 "use client";
 
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 
-import GET_POKEMONS from "./graphql/getPokemons.gql";
-import GET_DRESSEURS from "./graphql/getDresseurs.gql";
-import GET_PAGINATED_POKEMONS from "./graphql/getPaginatedPokemons.gql";
-import GET_PAGINATED_POKEMONS_BIS from "./graphql/getPaginatedPokemonsBis.gql";
 import { useQuery } from "@apollo/client";
-
-const inter = Inter({ subsets: ["latin"] });
+import { PokemonList } from "@/components/PokemonList";
+import { DresseurList } from "@/components/DresseurList";
+import { PaginatedPokemonList } from "@/components/PaginatedPokemonList";
+import { PaginatedPokemonListBis } from "@/components/PaginatedPokemonListBis";
+import { UpdatePokemon } from "@/components/UpdatePokemon";
 
 export default function Home() {
-  const { data: dataPokemons, refetch: refetchPokemons } = useQuery(
-    GET_POKEMONS,
-    {
-      context: {
-        fetchOptions: {
-          next: { revalidate: 0 },
-        },
-      },
-    }
-  );
-  const { data: dataDresseurs, refetch: refetchDresseurs } = useQuery(
-    GET_DRESSEURS,
-    {
-      context: {
-        fetchOptions: {
-          next: { revalidate: 0 },
-        },
-      },
-    }
-  );
-
-  const { data: dataPaginatedPokemons, fetchMore: fetchMorePaginatedPokemons } =
-    useQuery(GET_PAGINATED_POKEMONS, {
-      variables: {
-        offset: 0,
-        limit: 10,
-      },
-      context: {
-        fetchOptions: {
-          next: { revalidate: 0 },
-        },
-      },
-    });
-
-  const {
-    data: dataPaginatedPokemonsBis,
-    fetchMore: fetchMorePaginatedPokemonsBis,
-  } = useQuery(GET_PAGINATED_POKEMONS_BIS, {
-    variables: {
-      offset: 0,
-      limit: 10,
-    },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 0 },
-      },
-    },
-  });
-
   return (
     <>
       <Head>
@@ -70,59 +19,27 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.card}>
-          <button
-            onClick={() => {
-              refetchPokemons();
-            }}
-          >
-            Refetch all pokemons
-          </button>
-          <p>{JSON.stringify(dataPokemons)}</p>
-        </div>
-        <div className={styles.card}>
-          <button
-            onClick={() => {
-              refetchDresseurs();
-            }}
-          >
-            Fetch all dresseurs with pokemon
-          </button>
-          <p>{JSON.stringify(dataDresseurs)}</p>
-        </div>
-        <div className={styles.card}>
-          <button
-            onClick={() => {
-              fetchMorePaginatedPokemons({
-                variables: {
-                  // limit: 10,
-                  offset: 10,
-                },
-              });
-            }}
-          >
-            Fetch more paginated pokemons
-          </button>
-          <p>{JSON.stringify(dataPaginatedPokemons)}</p>
-        </div>
-      </main>
       <main>
         <div className={styles.card}>
-          <button
-            onClick={() => {
-              fetchMorePaginatedPokemonsBis({
-                variables: {
-                  limit: 10,
-                  offset: 10,
-                },
-              });
-            }}
-          >
-            Fetch more paginated pokemons BIS
-          </button>
-          <p>{JSON.stringify(dataPaginatedPokemonsBis)}</p>
+          <UpdatePokemon id={4} name={"Mewto"} />
         </div>
+        <div className={styles.card}>
+          <UpdatePokemon id={23} name={"Elektor"} />
+        </div>
+        <div className={styles.card}>
+          <UpdatePokemon id={2} name={"Luigi"} />
+        </div>
+        <div className={styles.card}>
+          <UpdatePokemon id={13} name={"Sendido"} />
+        </div>
+      </main>
+      <main className={styles.main}>
+        <PokemonList />
+        <DresseurList />
+      </main>
+      <main className={styles.main}>
+        <PaginatedPokemonList />
+        <PaginatedPokemonListBis />
       </main>
     </>
   );

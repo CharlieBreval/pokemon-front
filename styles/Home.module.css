@@ -14,7 +14,6 @@
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
-  font-family: var(--font-mono);
 }
 
 .description a {
@@ -35,7 +34,6 @@
 
 .code {
   font-weight: 700;
-  font-family: var(--font-mono);
 }
 
 .grid {
@@ -63,6 +61,8 @@
 .card button {
   font-weight: 600;
   margin-bottom: 0.7rem;
+  font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 .card p {

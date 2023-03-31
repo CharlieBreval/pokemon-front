@@ -1,0 +1,6 @@
+mutation UpdatePokemon($id: ID!, $name: String) {
+  updatePokemon(id: $id, name: $name) {
+    name
+    type
+  }
+}

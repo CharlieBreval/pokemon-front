@@ -1,9 +1,0 @@
-query paginatedPokemons($offset: Int!, $limit: Int!) {
-  paginatedPokemons(offset: $offset, limit: $limit)
-    @connection(key: "clementine", filter: []) {
-    id
-    name
-    cartouche
-    type
-  }
-}
