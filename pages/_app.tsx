@@ -22,32 +22,29 @@ export const getClient = () => {
       link: new HttpLink({
         uri: "http://localhost:4000/",
       }),
-      cache: new InMemoryCache({}),
-      // cache: new InMemoryCache({
-      //   typePolicies: {
-      //     Pokemon: {
-      //       fields: {
-      //         name: {
-      //           read(name) {
-      //             return name.toUpperCase();
-      //           },
-      //         },
-      //       },
-      //     },
-      //     Query: {
-      //       fields: {
-      //         paginatedPokemons: {
-      //           // Concatenate the incoming list items with
-      //           // the existing list items.
-      //           keyArgs: false,
-      //           merge(existing = [], incoming) {
-      //             return [...existing, ...incoming];
-      //           },
-      //         },
-      //       },
-      //     },
-      //   },
-      // }),
+      // cache: new InMemoryCache({}),
+      cache: new InMemoryCache({
+        typePolicies: {
+          Pokemon: {
+            fields: {
+              name: {
+                read(name) {
+                  return name.toUpperCase();
+                },
+              },
+            },
+          },
+          Query: {
+            fields: {
+              paginatedPokemons: {
+                merge(existing = [], incoming) {
+                  return [...existing, ...incoming];
+                },
+              },
+            },
+          },
+        },
+      }),
     });
   }
 

@@ -1,5 +1,6 @@
 query paginatedPokemonsBis($offset: Int!, $limit: Int!) {
-  paginatedPokemons(offset: $offset, limit: $limit) {
+  paginatedPokemons(offset: $offset, limit: $limit)
+    @connection(key: "thelistofpierre", filter: []) {
     id
     name
     cartouche

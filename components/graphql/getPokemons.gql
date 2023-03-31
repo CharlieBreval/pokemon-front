@@ -4,11 +4,4 @@ query allPokemons {
     cartouche
     name
   }
-  dresseurs {
-    name
-    pokemons {
-      id
-      name
-    }
-  }
 }
